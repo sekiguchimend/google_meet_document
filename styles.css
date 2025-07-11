@@ -145,3 +145,9 @@
             padding: 2px 4px;
             border-radius: 3px;
         }
+
+@media (max-width: 600px) {
+  body {
+    padding: 24px 20px; /* 上下24px, 左右20px に薄く */
+  }
+}
