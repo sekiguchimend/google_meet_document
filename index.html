@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Meet 完全導入マニュアル - UIベース手順書</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Google Meet 完全導入マニュアル<br>UIベース手順書（スクリーンショット付き）</h1>
+    
+    <div class="toc">
+        <h3>目次</h3>
+        <ol>
+            <li>導入概要と目的</li>
+            <li>事前準備とアクセス方法</li>
+            <li>会議の開始方法（2つのパターン）
+                <ol style="list-style-type: lower-alpha;">
+                    <li>カレンダーからの予約型会議</li>
+                    <li>即席会議（今すぐ作成）</li>
+                </ol>
+            </li>
+            <li>招待リンクの共有と参加者承認</li>
+            <li>画面共有（プレゼンテーション）機能</li>
+            <li>会議中の主要コントロール機能</li>
+            <li>高度な機能と設定</li>
+            <li>トラブルシューティング</li>
+            <li>セキュリティとベストプラクティス</li>
+        </ol>
+    </div>
+    
+    <h2>1. 導入概要と目的</h2>
+    
+    <p>Google Meet は Google Workspace に統合されたビデオ会議ツールです。本マニュアルでは、Google Meet を標準のオンライン会議ツールとして活用し、アカウント管理やセキュリティを Workspace に一本化するための手順を詳しく解説します。</p>
+    
+    <h3>主な特徴</h3>
+    <ul>
+        <li><strong>ブラウザベース</strong>：専用アプリのインストール不要</li>
+        <li><strong>時間制限</strong>：Google Workspace アカウントでは実質無制限</li>
+        <li><strong>セキュリティ</strong>：エンドツーエンド暗号化対応</li>
+        <li><strong>統合性</strong>：Google カレンダー、Gmail との完全統合</li>
+        <li><strong>参加者数</strong>：最大500名（プランによる）</li>
+    </ul>
+    
+    <h3>動作環境</h3>
+    <p>本マニュアルは以下の環境を前提として記載しています：</p>
+    <ul>
+        <li>PC ブラウザ（Google Chrome 推奨）</li>
+        <li>Google Workspace アカウント</li>
+        <li>安定したインターネット接続（推奨：上り下り 1Mbps 以上）</li>
+    </ul>
+    
+    <h2>2. 事前準備とアクセス方法</h2>
+    
+    <h3>Google Meet への基本アクセス</h3>
+    
+    <p>Google Meet にアクセスするには、ブラウザで以下の URL を開きます：</p>
+    <p class="code">https://meet.google.com/landing</p>
+    
+    <img src="./public/image.png" alt="Google Meet ホームページ">
+    
+    <div class="tip">
+        <strong>ヒント：</strong>Chrome ブラウザをお使いの場合、Google Meet は最適化されており、追加の設定なしで高品質な会議を行うことができます。
+    </div>
+    
+    <h3>権限設定の確認</h3>
+    
+    <p>初回利用時には、以下の権限を許可する必要があります：</p>
+    <ul>
+        <li><strong>カメラ</strong>：ビデオ通話のため</li>
+        <li><strong>マイク</strong>：音声通話のため</li>
+        <li><strong>通知</strong>：会議の開始通知のため</li>
+    </ul>
+    
+    <div class="warning">
+        <strong>注意：</strong>権限が拒否されている場合、ブラウザのアドレスバー左側にある鍵アイコンをクリックして、カメラとマイクの設定を「許可」に変更してください。
+    </div>
+    
+    <h2>3. 会議の開始方法（2つのパターン）</h2>
+    
+    <p>Google Meet で会議を開始する方法には、主に2つのパターンがあります。これらは代替手段であり、状況に応じて使い分けることができます。</p>
+    
+    <h3>パターン A：カレンダーからの予約型会議</h3>
+    
+    <p>事前に会議を予約し、参加者に招待を送信する方法です。定期的な会議や重要な会議に適しています。</p>
+    
+    <div class="step-box">
+        <div class="step-number">手順 1：Google カレンダーを開く</div>
+        <p>ブラウザで Google カレンダー（<span class="code">https://calendar.google.com</span>）を開き、ログインします。</p>
+        
+        <img src="https://cdn1.genspark.ai/user-upload-image/v1/webpage_capture_screen_tool_call/96975c2c-a818-4d00-8721-bc45363f5660" alt="Google カレンダー ログイン画面">
+    </div>
+    
+    <div class="step-box">
+        <div class="step-number">手順 2：新しいイベントを作成</div>
+        <p>カレンダー画面の左上にある <span class="ui-element">＋ 作成</span> ボタンをクリックします。</p>
+        
+        <img src="./public/yotei.png" alt="Google カレンダー イベント作成">
+    </div>
+    
+    <div class="step-box">
+        <div class="step-number">手順 3：会議詳細を入力</div>
+        <ul>
+            <li><strong>タイトル</strong>：会議の件名を入力</li>
+            <li><strong>日時</strong>：開始時間と終了時間を設定</li>
+            <li><strong>場所</strong>：必要に応じて会議室情報を入力</li>
+        </ul>
+    </div>
+    
+    <div class="step-box">
+        <div class="step-number">手順 4：Google Meet を追加</div>
+        <p>イベント作成画面で <span class="ui-element">「Google Meet のビデオ会議を追加」</span> をクリックします。会議リンクが自動的に生成されます。</p>
+        
+        <img src="./public/join-meet.png" alt="Google Meet リンクの追加">
+    </div>
+    
+    <div class="step-box">
+        <div class="step-number">手順 5：参加者を招待</div>
+        <p><span class="ui-element">「ゲスト」</span> 欄に参加者のメールアドレスを入力します。複数の参加者を追加する場合は、カンマで区切って入力します。</p>
+    </div>
+    
+    <div class="step-box">
+        <div class="step-number">手順 6：保存と送信</div>
+        <p><span class="ui-element">保存</span> → <span class="ui-element">送信</span> をクリックして、参加者に招待メールを送信します。</p>
+    </div>
+    
+    <h3>パターン B：即席会議（今すぐ作成）</h3>
+    
+    <p>すぐに会議を開始したい場合に使用する方法です。緊急の会議や短時間の打ち合わせに適しています。</p>
+    
+    <div class="step-box">
+        <div class="step-number">手順 1：Google Meet を開く</div>
+        <p>ブラウザで <span class="code">https://meet.google.com</span> を開きます。</p>
+    </div>
+    
+    <div class="step-box">
+        <div class="step-number">手順 2：新しい会議を作成</div>
+        <p>画面右側の <span class="ui-element">「新しい会議」</span> ボタンをクリックし、<span class="ui-element">「今すぐ作成」</span> を選択します。</p>
+        
+        <img src="./public/image.png" alt="Google Meet 新しい会議の作成">
+    </div>
+    
+    <div class="step-box">
+        <div class="step-number">手順 3：会議ルームに入室</div>
+        <p>カメラとマイクの設定を確認し、<span class="ui-element">「今すぐ参加」</span> をクリックして会議ルームに入室します。</p>
+    </div>
+    
+    <div class="step-box">
+        <div class="step-number">手順 4：会議情報を取得</div>
+        <p>入室後、画面右下の <span class="ui-element">「会議の詳細 (ℹ︎)」</span> をクリックし、<span class="ui-element">「参加に必要な情報をコピー」</span> を選択して、会議 URL と会議コードを取得します。</p>
+        <img src="./public/join.png" alt="Google Meet 会議情報取得">
+    </div>
+    
+    <div class="step-box">
+        <div class="step-number">手順 5：参加者を招待</div>
+        <p>取得した URL またはコードを、チャットやメールで参加者に共有します。</p>
+    </div>
+    
+    <h2>4. 招待リンクの共有と参加者承認</h2>
+    
+    <p>会議への参加方法と、ホストとしての参加者承認プロセスについて詳しく説明します。</p>
+    
+    <h3>招待リンクの共有方法</h3>
+    
+    <table>
+        <tr>
+            <th>共有方法</th>
+            <th>使用場面</th>
+            <th>手順</th>
+        </tr>
+        <tr>
+            <td>メール</td>
+            <td>正式な会議招待</td>
+            <td>カレンダーの招待機能を使用</td>
+        </tr>
+        <tr>
+            <td>チャット</td>
+            <td>即席会議</td>
+            <td>会議 URL をコピー&ペースト</td>
+        </tr>
+        <tr>
+            <td>会議コード</td>
+            <td>電話での案内</td>
+            <td>10桁の会議コードを伝達</td>
+        </tr>
+    </table>
+    
+    <h3>参加者承認プロセス</h3>
+    
+    <h4>ホスト側の操作</h4>
+    
+    <div class="step-box">
+        <div class="step-number">手順 1：参加リクエストの通知</div>
+        <p>参加者が会議に参加しようとすると、画面に参加リクエストのポップアップが表示されます。</p>
+    </div>
+    
+    <div class="step-box">
+        <div class="step-number">手順 2：参加者の承認</div>
+        <p>参加者の名前を確認し、<span class="ui-element">「承認」</span> ボタンをクリックして入室を許可します。</p>
+        
+        <img src="https://techcrunch.com/wp-content/uploads/2021/10/google-meet-audio-locks.png" alt="Google Meet 参加者承認">
+    </div>
+    
+    <div class="step-box">
+        <div class="step-number">手順 3：参加者の管理</div>
+        <p>参加者一覧から、個別の参加者に対して以下の操作が可能です：</p>
+        <ul>
+            <li>マイクのミュート/ミュート解除</li>
+            <li>カメラの無効化</li>
+            <li>会議からの退出</li>
+        </ul>
+    </div>
+    
+    <h4>参加者側の操作</h4>
+    
+    <div class="step-box">
+        <div class="step-number">手順 1：会議への参加</div>
+        <p>受信した URL をクリックするか、<span class="code">meet.google.com</span> で会議コードを入力します。</p>
+    </div>
+    
+    <div class="step-box">
+        <div class="step-number">手順 2：参加リクエスト</div>
+        <p><span class="ui-element">「参加をリクエスト」</span> ボタンをクリックして、ホストの承認を待ちます。</p>
+    </div>
+    
+    <div class="step-box">
+        <div class="step-number">手順 3：会議への入室</div>
+        <p>ホストが承認すると、自動的に会議に接続されます。</p>
+    </div>
+    
+    <div class="tip">
+        <strong>効率化のヒント：</strong>社内の定例会議では、会議設定で<span class="ui-element">「クイック アクセス」</span>を ON にすることで、参加リクエストを省略して即座に入室できます。
+    </div>
+    
+    <h2>5. 画面共有（プレゼンテーション）機能</h2>
+    
+    <p>Google Meet の画面共有機能は、プレゼンテーションやデモンストレーションを行う際に重要な機能です。</p>
+    
+    <h3>画面共有の開始手順</h3>
+    
+    <div class="step-box">
+        <div class="step-number">手順 1：画面共有の開始</div>
+        <p>会議画面下部のツールバーにある <span class="ui-element">🖥️「画面を共有」</span> アイコンをクリックします。</p>
+        
+        <img src="./public/share.png" alt="Google Meet 画面共有ボタン">
+    </div>
+    
+    <div class="step-box">
+        <div class="step-number">手順 2：共有対象の選択</div>
+        <p>以下の3つのオプションから共有したい対象を選択します：</p>
+        <ul>
+            <li><strong>画面全体</strong>：デスクトップ全体を共有</li>
+            <li><strong>ウィンドウ</strong>：特定のアプリケーションウィンドウのみ共有</li>
+            <li><strong>Chrome タブ</strong>：ブラウザの特定のタブのみ共有</li>
+        </ul>
+        
+        <img src="./public/share2.png" alt="Google Meet 共有対象の選択">
+    </div>
+    
+    <div class="step-box">
+        <div class="step-number">手順 3：共有の開始</div>
+        <p>共有したい対象を選択し、<span class="ui-element">「共有」</span> ボタンをクリックします。</p>
+    </div>
+    
+    <h3>画面共有中の操作</h3>
+    
+    <div class="step-box">
+        <div class="step-number">共有の制御</div>
+        <p>画面共有中は、以下の操作が可能です：</p>
+        <ul>
+            <li><strong>音声の共有</strong>：システム音声も一緒に共有</li>
+            <li><strong>ポインターの表示</strong>：マウスカーソルを強調表示</li>
+            <li><strong>画質の調整</strong>：共有品質の変更</li>
+        </ul>
+    </div>
+    
+    <div class="step-box">
+        <div class="step-number">手順 4：共有の停止</div>
+        <p>共有を停止する場合は、以下のいずれかの方法を使用します：</p>
+        <ul>
+            <li>ツールバー上部の <span class="ui-element">「共有を停止」</span> ボタンをクリック</li>
+            <li>ブラウザのポップアップで <span class="ui-element">「停止」</span> をクリック</li>
+        </ul>
+        
+        <img src="./public/stop.png" alt="Google Meet 画面共有停止">
+    </div>
+    
+    <h3>画面共有のベストプラクティス</h3>
+    
+    <div class="tip">
+        <strong>効果的な画面共有のコツ：</strong>
+        <ul>
+            <li>共有前に不要なアプリケーションを閉じる</li>
+            <li>プレゼンテーション用の画面解像度に調整する</li>
+            <li>プライベートな通知を無効にする</li>
+            <li>重要な部分はズーム機能を活用する</li>
+        </ul>
+    </div>
+    
+    <h2>6. 会議中の主要コントロール機能</h2>
+    
+    <p>会議中に使用できる主要なコントロール機能について、詳細な機能説明とキーボードショートカットを含めて解説します。</p>
+    
+    <h3>基本コントロール</h3>
+    
+    <table class="shortcut-table">
+        <tr>
+            <th>アイコン</th>
+            <th>機能</th>
+            <th>詳細説明</th>
+            <th>キーボードショートカット</th>
+        </tr>
+        <tr>
+            <td>🎙️</td>
+            <td>マイク</td>
+            <td>音声の ON/OFF 切替。ミュート時は赤色で表示</td>
+            <td>Ctrl + D</td>
+        </tr>
+        <tr>
+            <td>🎥</td>
+            <td>カメラ</td>
+            <td>ビデオの ON/OFF 切替。無効時は斜線が表示</td>
+            <td>Ctrl + E</td>
+        </tr>
+        <tr>
+            <td>💬</td>
+            <td>チャット</td>
+            <td>テキストチャットパネルの開閉</td>
+            <td>Ctrl + Alt + C</td>
+        </tr>
+        <tr>
+            <td>🖥️</td>
+            <td>画面共有</td>
+            <td>画面共有の開始・停止</td>
+            <td>Ctrl + Alt + P</td>
+        </tr>
+        <tr>
+            <td>CC</td>
+            <td>字幕</td>
+            <td>自動字幕の ON/OFF（英語・日本語対応）</td>
+            <td>Ctrl + Alt + C</td>
+        </tr>
+        <tr>
+            <td>⏹</td>
+            <td>退出</td>
+            <td>会議からの離脱</td>
+            <td>Ctrl + Alt + Q</td>
+        </tr>
+    </table>
+    
+    <h3>高度なコントロール機能</h3>
+    
+    <h4>参加者管理</h4>
+    
+    <div class="step-box">
+        <div class="step-number">参加者一覧の表示</div>
+        <p>画面右側の <span class="ui-element">「参加者を表示」</span> アイコンをクリックすると、参加者一覧が表示されます。</p>
+        
+        <img src="./public/user.png" alt="Google Meet 参加者一覧">
+    </div>
+    
+    <div class="step-box">
+        <div class="step-number">参加者の個別制御</div>
+        <p>ホストは各参加者に対して以下の操作が可能です：</p>
+        <ul>
+            <li><strong>マイクのミュート</strong>：参加者の音声を無効化</li>
+            <li><strong>カメラの停止</strong>：参加者のビデオを無効化</li>
+            <li><strong>会議からの退出</strong>：参加者を会議から退出させる</li>
+            <li><strong>共同ホスト権限の付与</strong>：他の参加者にホスト権限を移譲</li>
+        </ul>
+    </div>
+    
+    <h4>チャット機能</h4>
+    
+    <div class="step-box">
+        <div class="step-number">チャットの使用</div>
+        <p>会議中のテキストコミュニケーションに使用します：</p>
+        <ul>
+            <li><strong>全員へのメッセージ</strong>：すべての参加者に表示</li>
+            <li><strong>個人へのメッセージ</strong>：特定の参加者のみに送信</li>
+            <li><strong>ファイルの共有</strong>：ドキュメントや画像の共有</li>
+            <li><strong>リンクの共有</strong>：URL の自動リンク化</li>
+        </ul>
+    </div>
+    
+    <h4>レコーディング機能</h4>
+    
+    <div class="step-box">
+        <div class="step-number">会議の録画</div>
+        <p>Google Workspace Business Standard 以上のプランで利用可能：</p>
+        <ul>
+            <li><strong>録画の開始</strong>：メニューから「録画を開始」を選択</li>
+            <li><strong>録画の停止</strong>：録画中に「録画を停止」をクリック</li>
+            <li><strong>録画の保存</strong>：Google Drive に自動保存</li>
+            <li><strong>録画の共有</strong>：Drive リンクとして共有可能</li>
+        </ul>
+    </div>
+    
+    <div class="warning">
+        <strong>注意：</strong>録画機能は有料プランでのみ利用可能です。録画を開始する前に、参加者全員に録画の同意を得ることが重要です。
+    </div>
+    
+    <h3>アクセシビリティ機能</h3>
+    
+    <h4>自動字幕機能</h4>
+    
+    <div class="step-box">
+        <div class="step-number">字幕の設定</div>
+        <p>聴覚に障害のある参加者や、音声が聞き取りにくい環境での会議に有効です：</p>
+        <ul>
+            <li><strong>自動字幕</strong>：AI による音声認識で字幕を自動生成</li>
+            <li><strong>言語設定</strong>：日本語、英語など複数言語に対応</li>
+            <li><strong>字幕の位置</strong>：画面下部に表示</li>
+            <li><strong>字幕の保存</strong>：会議後に字幕データの保存が可能</li>
+        </ul>
+    </div>
+    
+    <h4>キーボードナビゲーション</h4>
+    
+    <p>キーボードのみで会議を操作することが可能です：</p>
+    <ul>
+        <li><strong>Tab キー</strong>：UI 要素間の移動</li>
+        <li><strong>Enter キー</strong>：選択した要素の実行</li>
+        <li><strong>Escape キー</strong>：ダイアログの閉じる</li>
+        <li><strong>スペースキー</strong>：一時的なマイクミュート解除</li>
+    </ul>
+    
+    <h2>7. 高度な機能と設定</h2>
+    
+    <h3>会議の詳細設定</h3>
+    
+    <div class="step-box">
+        <div class="step-number">会議室の設定</div>
+        <p>会議の開始前または進行中に、以下の設定を調整できます：</p>
+        <ul>
+            <li><strong>待機室の有効化</strong>：参加者を待機室で待機させる</li>
+            <li><strong>ノックの無効化</strong>：承認なしでの入室を許可</li>
+            <li><strong>チャットの制限</strong>：チャット機能の使用制限</li>
+            <li><strong>画面共有の制限</strong>：ホストのみ画面共有を許可</li>
+        </ul>
+    </div>
+    
+    <h3>品質設定の調整</h3>
+    
+    <div class="step-box">
+        <div class="step-number">ビデオ品質の設定</div>
+        <p>ネットワーク環境に応じて、ビデオ品質を調整できます：</p>
+        <ul>
+            <li><strong>自動</strong>：ネットワーク状況に応じて自動調整</li>
+            <li><strong>高品質</strong>：720p HD での配信</li>
+            <li><strong>標準</strong>：480p での配信</li>
+            <li><strong>低品質</strong>：240p での配信（帯域制限時に有効）</li>
+        </ul>
+    </div>
+    
+    <div class="step-box">
+        <div class="step-number">音声設定の調整</div>
+        <p>音声品質の最適化のための設定：</p>
+        <ul>
+            <li><strong>ノイズキャンセル</strong>：背景雑音の除去</li>
+            <li><strong>音声レベル調整</strong>：マイク感度の調整</li>
+            <li><strong>エコー除去</strong>：音声のエコー防止</li>
+            <li><strong>音声品質優先</strong>：音声を優先してデータ使用量を調整</li>
+        </ul>
+    </div>
+    
+    <h3>統合機能</h3>
+    
+    <h4>Google Workspace との連携</h4>
+    
+    <div class="step-box">
+        <div class="step-number">カレンダー統合</div>
+        <ul>
+            <li><strong>自動会議作成</strong>：カレンダーイベントから自動的に Meet リンクを生成</li>
+            <li><strong>会議の自動開始</strong>：予定時刻に会議を自動的に開始</li>
+            <li><strong>出席者の自動追加</strong>：カレンダーの招待者を自動的に会議に追加</li>
+        </ul>
+    </div>
+    
+    <div class="step-box">
+        <div class="step-number">Gmail 統合</div>
+        <ul>
+            <li><strong>メールからの会議作成</strong>：Gmail からワンクリックで会議を作成</li>
+            <li><strong>会議リンクの自動挿入</strong>：メール本文に会議リンクを自動挿入</li>
+            <li><strong>会議の録画共有</strong>：録画ファイルを Gmail 経由で共有</li>
+        </ul>
+    </div>
+    
+    <div class="step-box">
+        <div class="step-number">Drive 統合</div>
+        <ul>
+            <li><strong>録画の自動保存</strong>：会議録画を Drive に自動保存</li>
+            <li><strong>資料の共有</strong>：会議中に Drive ファイルを直接共有</li>
+            <li><strong>会議資料の整理</strong>：会議ごとのフォルダを自動作成</li>
+        </ul>
+    </div>
+    
+    <h2>8. トラブルシューティング</h2>
+    
+    <p>Google Meet の使用中に発生する可能性のある問題と、その解決方法について詳しく説明します。</p>
+    
+    <h3>接続関連の問題</h3>
+    
+    <table>
+        <tr>
+            <th>症状</th>
+            <th>主な原因</th>
+            <th>解決策</th>
+        </tr>
+        <tr>
+            <td>会議に参加できない</td>
+            <td>ネットワーク接続の問題</td>
+            <td>
+                <ul>
+                    <li>インターネット接続を確認</li>
+                    <li>ブラウザのリロード</li>
+                    <li>別のブラウザで試行</li>
+                    <li>デバイスの再起動</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>音声・映像が途切れる</td>
+            <td>帯域不足</td>
+            <td>
+                <ul>
+                    <li>ビデオ品質を「低」に変更</li>
+                    <li>他のアプリケーションを終了</li>
+                    <li>WiFi の再接続</li>
+                    <li>有線接続への切り替え</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>会議から突然切断される</td>
+            <td>ネットワークの不安定</td>
+            <td>
+                <ul>
+                    <li>ネットワーク設定の確認</li>
+                    <li>ファイアウォール設定の確認</li>
+                    <li>プロキシ設定の確認</li>
+                    <li>モバイルデータへの切り替え</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    
+    <h3>音声関連の問題</h3>
+    
+    <table>
+        <tr>
+            <th>症状</th>
+            <th>主な原因</th>
+            <th>解決策</th>
+        </tr>
+        <tr>
+            <td>相手の音声が聞こえない</td>
+            <td>音声出力設定の問題</td>
+            <td>
+                <ul>
+                    <li>スピーカーの音量を確認</li>
+                    <li>ブラウザの音声設定を確認</li>
+                    <li>別のオーディオデバイスを試す</li>
+                    <li>Meet の音声設定を変更</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>自分の音声が相手に聞こえない</td>
+            <td>マイク設定の問題</td>
+            <td>
+                <ul>
+                    <li>マイクのミュート状態を確認</li>
+                    <li>ブラウザのマイク権限を確認</li>
+                    <li>別のマイクデバイスを試す</li>
+                    <li>マイクの接続を確認</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>ハウリング（エコー）が発生</td>
+            <td>同じ場所での複数デバイス使用</td>
+            <td>
+                <ul>
+                    <li>片方のデバイスをミュート</li>
+                    <li>ヘッドセットの使用</li>
+                    <li>スピーカーの音量を下げる</li>
+                    <li>デバイス間の距離を空ける</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    
+    <h3>映像関連の問題</h3>
+    
+    <table>
+        <tr>
+            <th>症状</th>
+            <th>主な原因</th>
+            <th>解決策</th>
+        </tr>
+        <tr>
+            <td>相手の映像が真っ暗</td>
+            <td>カメラ権限の拒否</td>
+            <td>
+                <ul>
+                    <li>ブラウザのカメラ権限を確認</li>
+                    <li>アドレスバーの🔒 → カメラを「許可」に変更</li>
+                    <li>カメラの ON/OFF を切り替え</li>
+                    <li>別のカメラデバイスを試す</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>映像が遅延する</td>
+            <td>処理能力不足</td>
+            <td>
+                <ul>
+                    <li>他のアプリケーションを終了</li>
+                    <li>ビデオ品質を下げる</li>
+                    <li>参加者のビデオを無効化</li>
+                    <li>ブラウザのタブを減らす</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>映像が粗い・ぼやける</td>
+            <td>帯域不足または設定問題</td>
+            <td>
+                <ul>
+                    <li>ネットワーク速度を確認</li>
+                    <li>ビデオ品質を「高」に変更</li>
+                    <li>照明環境を改善</li>
+                    <li>カメラの清掃</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    
+    <h3>画面共有関連の問題</h3>
+    
+    <table>
+        <tr>
+            <th>症状</th>
+            <th>主な原因</th>
+            <th>解決策</th>
+        </tr>
+        <tr>
+            <td>画面共有ができない</td>
+            <td>ブラウザの権限問題</td>
+            <td>
+                <ul>
+                    <li>ブラウザの画面共有権限を確認</li>
+                    <li>Chrome の場合、サイト設定を確認</li>
+                    <li>ブラウザの再起動</li>
+                    <li>拡張機能の無効化</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>共有画面が黒い</td>
+            <td>共有対象の最小化</td>
+            <td>
+                <ul>
+                    <li>共有しているウィンドウを最大化</li>
+                    <li>別のウィンドウを選択</li>
+                    <li>画面全体の共有に切り替え</li>
+                    <li>共有の再開始</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>共有画面の更新が遅い</td>
+            <td>処理能力不足</td>
+            <td>
+                <ul>
+                    <li>共有品質を下げる</li>
+                    <li>不要なアプリケーションを終了</li>
+                    <li>フルスクリーンモードを解除</li>
+                    <li>参加者数を制限</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    
+    <h3>緊急対応手順</h3>
+    
+    <div class="warning">
+        <strong>会議が正常に進行できない場合の緊急対応：</strong>
+        <ol>
+            <li><strong>即座の対応</strong>：チャット機能で参加者に状況を説明</li>
+            <li><strong>代替手段の提示</strong>：電話会議への切り替えを提案</li>
+            <li><strong>技術的な再試行</strong>：ブラウザの再起動、デバイスの変更</li>
+            <li><strong>会議の延期</strong>：問題が解決しない場合は会議を延期</li>
+            <li><strong>事後報告</strong>：問題の詳細を IT 部門に報告</li>
+        </ol>
+    </div>
+    
+    <h2>9. セキュリティとベストプラクティス</h2>
+    
+    <h3>セキュリティ設定</h3>
+    
+    <div class="step-box">
+        <div class="step-number">会議のセキュリティ強化</div>
+        <ul>
+            <li><strong>待機室の使用</strong>：すべての参加者を待機室で確認</li>
+            <li><strong>会議パスワードの設定</strong>：追加の認証レイヤーを追加</li>
+            <li><strong>ドメイン制限</strong>：特定のドメインからのみ参加を許可</li>
+            <li><strong>匿名参加の禁止</strong>：Google アカウントでのログインを必須化</li>
+        </ul>
+    </div>
+    
+    <div class="step-box">
+        <div class="step-number">参加者の管理</div>
+        <ul>
+            <li><strong>参加者の身元確認</strong>：入室前に参加者の確認</li>
+            <li><strong>権限の制限</strong>：必要最小限の権限のみ付与</li>
+            <li><strong>会議中の監視</strong>：不適切な行動の監視</li>
+            <li><strong>緊急時の対応</strong>：問題のある参加者の即座の退出</li>
+        </ul>
+    </div>
+    
+    <h3>会議運営のベストプラクティス</h3>
+    
+    <div class="tip">
+        <strong>効果的な会議運営のための推奨事項：</strong>
+        <ol>
+            <li><strong>事前準備</strong>
+                <ul>
+                    <li>議題の事前共有</li>
+                    <li>必要な資料の準備</li>
+                    <li>技術的な事前テスト</li>
+                    <li>参加者への事前案内</li>
+                </ul>
+            </li>
+            <li><strong>会議中の管理</strong>
+                <ul>
+                    <li>時間管理の徹底</li>
+                    <li>参加者全員の発言機会の確保</li>
+                    <li>記録の適切な取得</li>
+                    <li>次回のアクションアイテムの明確化</li>
+                </ul>
+            </li>
+            <li><strong>事後フォロー</strong>
+                <ul>
+                    <li>会議録の共有</li>
+                    <li>決定事項の確認</li>
+                    <li>次回会議の設定</li>
+                    <li>フィードバックの収集</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+    
+    <h3>プライバシー保護</h3>
+    
+    <div class="step-box">
+        <div class="step-number">データの保護</div>
+        <ul>
+            <li><strong>録画の管理</strong>：録画ファイルの適切な保存と共有</li>
+            <li><strong>チャットの記録</strong>：チャット内容の機密性の確保</li>
+            <li><strong>参加者情報</strong>：参加者の個人情報の保護</li>
+            <li><strong>会議内容</strong>：機密情報の適切な取り扱い</li>
+        </ul>
+    </div>
+    
+    <h3>継続的な改善</h3>
+    
+    <div class="step-box">
+        <div class="step-number">定期的な見直し</div>
+        <ul>
+            <li><strong>使用状況の分析</strong>：会議の効果性の評価</li>
+            <li><strong>技術的な更新</strong>：新機能の活用検討</li>
+            <li><strong>トレーニングの実施</strong>：ユーザーのスキル向上</li>
+            <li><strong>ポリシーの更新</strong>：セキュリティ要件の見直し</li>
+        </ul>
+    </div>
+    
+    <h2>まとめ</h2>
+    
+    <p>Google Meet は、Google Workspace に統合された強力なビデオ会議ツールです。本マニュアルで説明した機能を活用することで、効率的で安全なオンライン会議を実現できます。</p>
+    
+    <h3>主要なポイント</h3>
+    
+    <ul>
+        <li><strong>柔軟な会議開始</strong>：予約型とインスタント型の2つの方法を状況に応じて使い分け</li>
+        <li><strong>統合性の活用</strong>：Google カレンダーとの連携により、シームレスな会議管理</li>
+        <li><strong>豊富な機能</strong>：画面共有、録画、字幕など、多様な会議スタイルに対応</li>
+        <li><strong>セキュリティの確保</strong>：適切な設定により、安全な会議環境を構築</li>
+        <li><strong>トラブル対応</strong>：問題発生時の迅速な解決方法を理解</li>
+    </ul>
+    
+    <h3>継続的な活用のために</h3>
+    
+    <p>Google Meet を最大限に活用するためには、継続的な学習と改善が重要です。新しい機能の追加や既存機能の改善が定期的に行われるため、最新の情報を確認し、チームメンバーと情報を共有することをお勧めします。</p>
+    
+    <div class="tip">
+        <strong>さらなる学習のために：</strong>
+        <ul>
+            <li>Google Workspace の公式ヘルプセンターで最新情報を確認</li>
+            <li>社内でのベストプラクティスの共有</li>
+            <li>定期的な使用方法のレビューと改善</li>
+            <li>新機能のテストと評価</li>
+        </ul>
+    </div>
+    
+    <p>このマニュアルが、Google Meet の効果的な活用と、より良いオンライン会議体験の実現に貢献することを願っています。</p>
+</body>
+</html>
